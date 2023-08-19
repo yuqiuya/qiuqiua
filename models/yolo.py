@@ -22,7 +22,6 @@ if platform.system() != 'Windows':
 
 from models.common import *
 from models.experimental import *
-from models.SE import SEAttention
 from utils.autoanchor import check_anchor_order
 from utils.general import LOGGER, check_version, check_yaml, make_divisible, print_args
 from utils.plots import feature_visualization
@@ -277,8 +276,6 @@ def parse_model(d, ch):  # model_dict, input_channels(3)
                 args.insert(2, n)  # number of repeats
                 n = 1
         elif m is nn.BatchNorm2d:
-            args = [ch[f]]
-        elif m is SEAttention:
             args = [ch[f]]
         elif m is Concat:
             c2 = sum(ch[x] for x in f)
